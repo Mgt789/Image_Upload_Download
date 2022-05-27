@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<string>
+
+@*upload button*@
+<div class="container">
+
+
+    @using (Html.BeginForm("Index", "Gallery", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="row" style="align-items:center">
+            <div class="form-group col-md-6">
+                <input type="file" class="form-control" name="myFile" />
+            </div>
+
+            <div class="form-group col-md-6">
+                <input type="submit" name="filesubmit" value="Upload" />
+            </div>
+        </div>
+    }
+    <br />
+
+
+    <div class="row">
+        @foreach (var imagePath in Model)
+        {
+            <div class="col-md-3">
+                <div class="alert alert-success" role="alert">
+                    <a href="/Gallery/DownloadFile/?filePath=@imagePath">
+                        <img src="~/@imagePath" alt="Alternate Text" class="img-fluid mx-auto d-block" />
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+
+
+</div>
